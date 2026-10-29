@@ -39,20 +39,26 @@ public int minEatingSpeed(int[] piles, int h) {
     
         int l = 1;
         int r = 0;
+
+        //find the min and max for the binary search of speeds; min is 1 banana per hour, and max will be max in the list of bananas.
         for (int p : piles) r = Math.max(r, p);
 
-        while (l < r) {
-            int mid = l + (r - l) / 2;
 
-            if (canFinish(piles, mid, h)) {
-                r = mid;          // mid works, but maybe something smaller does too
-            } else {
-                l = mid + 1;      // mid is too slow
+
+        while (l < r) {
+            int mid = l + (r-l)/2;
+            if (canFinish(piles, mid, h))
+            {
+                r = mid;
             }
+            else{
+                l = mid+1;
+            }
+
         }
         return l;
     }
-// Input: piles = [3,6,7,11], h = 8
+    // Input: piles = [3,6,7,11], h = 8
     private boolean canFinish(int[] piles, int k, int h) {
         long hours = 0;           // long: sums can exceed int range
         for (int p: piles){
