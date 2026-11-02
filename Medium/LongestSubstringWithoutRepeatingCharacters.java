@@ -30,7 +30,55 @@ package Medium;
 import java.util.HashSet;
 import java.util.Set;
 
+
+// "abcdaf"
 public class LongestSubstringWithoutRepeatingCharacters {
+    public int lengthOfLongestSubstring(String s) {
+        //We are going to go through the string and create a sliding window. I will use a hash set and we will slide the window one 
+        // to the right if we see a repeating character.
+
+        HashSet<Character> characterList = new HashSet<>();
+        int right =-1;
+        int left =0;
+        int max = 0;
+        for (char c: s.toCharArray()){
+            right++; //5
+            while (characterList.contains(c)){
+                left++; //1
+                characterList.remove(s.charAt(left));
+
+            }
+                characterList.add(c);
+                max= Math.max(max, right-left+1);
+            }
+            return max;
+            
+        }
+    
+    
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 //Have a sliding window
     public int lengthOfLongestSubstring(String s) {
         Set<Character> window = new HashSet<>();
