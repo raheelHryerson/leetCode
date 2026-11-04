@@ -35,16 +35,31 @@
 import java.util.HashMap;
 
 public class LemonadeChange {
+    //My solution
     public boolean lemonadeChange(int[] bills) {
         
         //One way we can approach this is to go put each number into a hashmap, if it exists then subtract 10 first then 5s
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int bill: bills){
-            if (bill == 5) map.put(bill, map.getOrDefault(map, 0)+1);
+            if (bill == 5) map.put(bill, map.getOrDefault(bill, 0)+1);
             else if (bill == 10) {
-                if (map.containsKey(bill)){
-                    map.remove(bill, map.getOrDefault(map, map.get(bill))-1);
+                map.put(bill, map.getOrDefault(bill, 0)+1);
+                if (!map.containsKey(5)) return false;
+                map.computeIfPresent(5, (key, value) -> value == 1? null: value -1);
+            }
+            else if (bill == 20){
+                int total = 20;
+                while (total != 5) {
+                if (map.containsKey(10) && total == 20) {
+                    map.computeIfPresent(10, (key, value) -> value == 1? null: value -1);
+                    total-= 10;
+                }
+                if (!map.containsKey(5)) return false;
+                else {
+                    map.computeIfPresent(5, (key, value) -> value == 1? null: value -1);
+                    total-=5;
+                }
                 }
             }
         }
@@ -52,4 +67,5 @@ public class LemonadeChange {
         return true;
 
     }
+
 }
