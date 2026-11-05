@@ -56,31 +56,9 @@ public class LongestSubstringWithoutRepeatingCharacters {
         }
     
     
-    
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-//Have a sliding window
-    public int lengthOfLongestSubstring(String s) {
+  
+        //Have a sliding window
+    public int lengthOfLongestSubstringTwo(String s) {
         Set<Character> window = new HashSet<>();
         int left = 0;
         int max = 0;
